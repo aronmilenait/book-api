@@ -2,21 +2,16 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Book } from './book/domain/book.entity';
 import { BookModule } from './book/book.module';
+import { Book } from './book/domain/book.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 33060,
-      username: 'root',
-      password: '12345',
-      database: 'books',
+      type: 'sqlite',
+      database: 'books.sqlite',
       entities: [Book],
-      synchronize: true,
-      logging: true,
+      synchronize: false,
     }),
     BookModule,
   ],
